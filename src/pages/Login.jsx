@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [username, setUsername] = useState(""); //to store username
   const [password, setPassword] = useState(""); //to store password
-  const { insertCookie, getCookie, deleteCookie } = useCookie("access_token");
+  const { insertCookie } = useCookie("access_token");
   const [messageApi, contextHolder] = message.useMessage(); //to show message
   // const [_, setCookies] = useCookies(["access_token"]); //to store cookies in browser
   const navigator = useNavigate(); //to redirect to todos page

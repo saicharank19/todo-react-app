@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Router>
-        {cookie && <Navbar />}
+        {cookie.access_token && <Navbar />}
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
