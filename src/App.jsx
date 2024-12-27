@@ -3,25 +3,26 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Todos from "./pages/Todos";
-import useCookie from "./hooks/useCookie";
+import { useCookies } from "react-cookie";
 import Navbar from "./components/Navbar";
 import { Navigate } from "react-router-dom";
 
 function App() {
-  const { getCookie } = useCookie();
-  const cookie = getCookie();
+  const [cookie] = useCookies(["access_token"]);
 
   return (
     <>
       <Router>
-        {cookie && <Navbar />}
+        {cookie.access_token && <Navbar />}
         <Routes>
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/todos" element={<Todos />} />
           <Route
-            path="/"
-            element={<Navigate to={cookie ? "/todos" : "/login"} />}
+            path="/login"
+            element={cookie.access_token ? <Todos /> : <Login />}
+          />
+          <Route
+            path="/todos"
+            element={cookie.access_token ? <Todos /> : <Login />}
           />
         </Routes>
       </Router>

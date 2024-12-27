@@ -1,9 +1,8 @@
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import useCookie from "../hooks/useCookie";
-
+import { useCookies } from "react-cookie";
 function Navbar() {
-  const { deleteCookie } = useCookie();
+  const [cookie, _, removeCookie] = useCookies(["access_token"]);
   const navigate = useNavigate();
 
   return (
@@ -15,7 +14,7 @@ function Navbar() {
         top: "10px",
       }}
       onClick={() => {
-        deleteCookie("access_token");
+        removeCookie("access_token");
         navigate("/login");
       }}
     >
