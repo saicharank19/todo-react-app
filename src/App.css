@@ -1,0 +1,18 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+.form-container Input {
+  margin-bottom: 12px;
+}
+.form-container Button {
+  margin-top: 12px;
+}
