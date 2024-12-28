@@ -8,9 +8,11 @@ import { useCookies } from "react-cookie";
 function Login() {
   const [username, setUsername] = useState(""); //to store username
   const [password, setPassword] = useState(""); //to store password
+
   const [_, setCookie] = useCookies(["access_token"]);
+
   const [messageApi, contextHolder] = message.useMessage(); //to show message
-  // const [_, setCookies] = useCookies(["access_token"]); //to store cookies in browser
+  
   const navigator = useNavigate(); //to redirect to todos page
 
   const handleSubmit = async () => {
