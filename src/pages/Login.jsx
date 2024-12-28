@@ -2,15 +2,17 @@ import { Input, Button, message } from "antd"; //pnpm install antd --save
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons"; //pnpm install @ant-design/icons
 import { useState } from "react";
 import axios from "axios";
-import useCookie from "../hooks/useCookie";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function Login() {
   const [username, setUsername] = useState(""); //to store username
   const [password, setPassword] = useState(""); //to store password
-  const { insertCookie } = useCookie("access_token");
+
+  const [_, setCookie] = useCookies(["access_token"]);
+
   const [messageApi, contextHolder] = message.useMessage(); //to show message
-  // const [_, setCookies] = useCookies(["access_token"]); //to store cookies in browser
+  
   const navigator = useNavigate(); //to redirect to todos page
 
   const handleSubmit = async () => {
@@ -24,7 +26,7 @@ function Login() {
           type: "success",
           content: "This is a success message",
         });
-        insertCookie("access_token", response.data.token);
+        setCookie("access_token", response.data.token);
         navigator("/todos");
       }
     } catch (error) {
