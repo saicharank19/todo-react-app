@@ -16,3 +16,50 @@
 .form-container Button {
   margin-top: 12px;
 }
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+.todo-input-container {
+  display: flex;
+
+  align-items: center;
+}
+.todo-input-container input {
+  margin-right: 12px;
+}
+
+.todo-container-undone {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 12px;
+  padding: 12px;
+  border: 2px solid red;
+}
+.todo-container-done {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  width: 100%;
+  align-items: center;
+  margin-top: 15px;
+  padding: 12px;
+  border: 2px solid green;
+  border-radius: 15px;
+}
+.todo-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 12px;
+}
+.todo-buttons button {
+  margin-bottom: 6px;
+}
