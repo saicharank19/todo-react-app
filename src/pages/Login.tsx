@@ -54,7 +54,7 @@ function Login() {
       <Input.Password
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
-        Render={(visible) =>
+        iconRender={(visible: boolean) =>
           visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
         }
       />

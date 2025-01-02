@@ -5,7 +5,6 @@ import Login from "./pages/Login";
 import Todos from "./pages/Todos";
 import { useCookies } from "react-cookie";
 import Navbar from "./components/Navbar";
-import { Navigate } from "react-router-dom";
 
 function App() {
   const [cookie] = useCookies(["access_token"]);

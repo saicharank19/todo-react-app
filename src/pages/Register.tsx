@@ -71,7 +71,7 @@ function Register() {
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)} //to set password
-        iconRender={(visible) =>
+        iconRender={(visible: boolean) =>
           visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
         }
       />

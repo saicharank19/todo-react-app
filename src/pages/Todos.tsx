@@ -1,21 +1,20 @@
 import { Input, Button, message, InputRef } from "antd";
 
-import { useState, useRef, createRef } from "react";
-import React from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 
-// interface todoList {
-//   _id: string;
-//   title: string;
-//   status: boolean;
-// }
+interface todoList {
+  todoId: string;
+  title: string;
+  status: boolean;
+}
 
 function Todos(): JSX.Element {
   const [todoInput, setTodoInput] = useState<string>("");
   const [messageApi, contextHolder] = message.useMessage();
-  const [todoList, setTodoList] = useState<string[]>([]);
+  const [todoList, setTodoList] = useState<todoList[]>([]);
   const [getData, setGetData] = useState<boolean>(false);
   const [cookie, _] = useCookies(["access_token"]);
   const inputRef = useRef<InputRef | null>(null);
