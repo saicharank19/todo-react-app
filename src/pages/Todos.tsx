@@ -1,17 +1,24 @@
-import { Input, Button, message } from "antd";
+import { Input, Button, message, InputRef } from "antd";
 
-import { useState, useRef } from "react";
+import { useState, useRef, createRef } from "react";
+import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 
-function Todos() {
-  const [todoInput, setTodoInput] = useState("");
+// interface todoList {
+//   _id: string;
+//   title: string;
+//   status: boolean;
+// }
+
+function Todos(): JSX.Element {
+  const [todoInput, setTodoInput] = useState<string>("");
   const [messageApi, contextHolder] = message.useMessage();
-  const [todoList, setTodoList] = useState([]);
-  const [getData, setGetData] = useState(false);
+  const [todoList, setTodoList] = useState<string[]>([]);
+  const [getData, setGetData] = useState<boolean>(false);
   const [cookie, _] = useCookies(["access_token"]);
-  const inputRef = useRef(null);
+  const inputRef = useRef<InputRef | null>(null);
 
   useEffect(() => {
     const getTodos = async () => {
@@ -40,7 +47,10 @@ function Todos() {
         }
       );
       if (response.status === 201) {
-        inputRef.current.value = "";
+        if (inputRef.current) {
+          (inputRef.current as unknown as HTMLInputElement).value = "";
+        }
+
         setGetData(!getData);
         messageApi.open({
           type: "success",
@@ -58,7 +68,7 @@ function Todos() {
     }
   };
 
-  const handleStatus = async (todoId) => {
+  const handleStatus = async (todoId: string) => {
     try {
       const response = await axios.put(
         "http://localhost:3000/todo/update",
@@ -87,7 +97,7 @@ function Todos() {
     }
   };
 
-  const handleDelete = async (todoId) => {
+  const handleDelete = async (todoId: string) => {
     try {
       const response = await axios.delete("http://localhost:3000/todo/delete", {
         data: {
@@ -124,6 +134,7 @@ function Todos() {
           onChange={(e) => setTodoInput(e.target.value)}
           ref={inputRef}
         />
+
         <Button size="large" onClick={handleNewTodo}>
           Add
         </Button>

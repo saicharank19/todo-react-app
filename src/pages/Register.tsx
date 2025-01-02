@@ -3,11 +3,12 @@ import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 import axios from "axios"; //npm install axios
 import { useNavigate } from "react-router-dom";
+import { AxiosResponse } from "axios";
 
 function Register() {
-  const [username, setUsername] = useState(""); //to store username
-  const [email, setEmail] = useState(""); //to store email
-  const [password, setPassword] = useState(""); //to store password
+  const [username, setUsername] = useState<string>(""); //to store username
+  const [email, setEmail] = useState<string>(""); //to store email
+  const [password, setPassword] = useState<string>(""); //to store password
   const [messageApi, contextHolder] = message.useMessage(); //to show message
   const navigator = useNavigate(); //to redirect to login page
 
@@ -20,12 +21,15 @@ function Register() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/user/register", {
-        //to send data to server
-        email,
-        username,
-        password,
-      });
+      const response: AxiosResponse = await axios.post(
+        "http://localhost:3000/user/register",
+        {
+          //to send data to server
+          email,
+          username,
+          password,
+        }
+      );
       if (response.status === 201) {
         //if response is 201 then show message
         messageApi.open({

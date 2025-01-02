@@ -4,23 +4,25 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { AxiosResponse } from "axios";
 
 function Login() {
-  const [username, setUsername] = useState(""); //to store username
-  const [password, setPassword] = useState(""); //to store password
-
+  const [username, setUsername] = useState<string>(""); //to store username
+  const [password, setPassword] = useState<string>(""); //to store password
   const [_, setCookie] = useCookies(["access_token"]);
-
   const [messageApi, contextHolder] = message.useMessage(); //to show message
-  
+  // const [_, setCookies] = useCookies(["access_token"]); //to store cookies in browser
   const navigator = useNavigate(); //to redirect to todos page
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/user/login", {
-        username,
-        password,
-      });
+      const response: AxiosResponse = await axios.post(
+        "http://localhost:3000/user/login",
+        {
+          username,
+          password,
+        }
+      );
       if (response.status === 200) {
         messageApi.open({
           type: "success",
